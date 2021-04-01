@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Custom="clr-namespace:sticky_notes.Renders"
+             x:Class="sticky_notes.View.Stickme_notes_detailView"
+             BackgroundColor="#f2f0f0">
+
+    <!--BOTÕES DA BARRA SUPERIOR DA APLICAÇÃO-->
+    <ContentPage.ToolbarItems>
+        <!--Botão superior Timer-->
+        <ToolbarItem  Priority="0" 
+                      Command="{Binding SaveNoteCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"  
+                                 Glyph="" Color="White" Size="20"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <!--Botão superior Pin-->
+        <ToolbarItem  Priority="0" 
+                      Command="{Binding DeleteNoteCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"  
+                                 Glyph="" Color="White" Size="20"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+       <!--Botao superior Check-->
+        <ToolbarItem  Priority="0" 
+                      Command="{Binding DeleteNoteCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="{StaticResource FontAwesomeSolid}"  
+                                 Glyph="" Color="White" Size="20"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowDefinitions="Auto,*">
+                <Custom:CustomFrame Grid.Row="0" CornerRadius="0,0,40,40"  BackgroundColor="#0d5d44">
+                    <Grid RowDefinitions="Auto,Auto">
+
+                        <Grid Grid.Row="0" RowDefinitions="Auto" ColumnDefinitions="Auto,*">
+
+                            <Label Grid.Row="0" Grid.Column="0" Text="" FontSize="25" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid }" HorizontalOptions="Start">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer  Tapped="TapGestureRecognizer_Tapped"/>
+                                </Label.GestureRecognizers>
+                            </Label>
+
+                            <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                <Label Text="" FontSize="25" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid }" Margin="15,0,0,0"/>
+                                <Label Text="" FontSize="25" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid }" Margin="15,0,0,0"/>
+                                <Label Text="" FontSize="25" TextColor="White" FontFamily="{StaticResource FontAwesomeSolid }" Margin="15,0,0,0"/>
+                            </StackLayout>
+                            
+                        </Grid>
+                        <Label Grid.Row="1" Text="UX Basics" FontSize="25" TextColor="White" FontAttributes="Bold" Padding="0,5,0,0"/>
+                    </Grid>
+                </Custom:CustomFrame>
+                
+                <Custom:CustomFrame Grid.Row="1" Background="#f2f0f0" VerticalOptions="FillAndExpand">
+                    <Custom:CustomEditor x:Name="Note" FontSize="20" TextColor="Black"/>
+                </Custom:CustomFrame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+    
+</ContentPage>

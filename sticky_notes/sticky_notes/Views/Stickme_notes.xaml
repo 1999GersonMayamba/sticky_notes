@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Custom="clr-namespace:sticky_notes.Renders"
+             xmlns:local="clr-namespace:sticky_notes.ViewModels"
+             x:Class="sticky_notes.View.Stickme_notes"
+             Background="#f2f0f0">
+
+    <!--<ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Image">
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="WidthRequest" Value="30"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>-->
+    
+    <ContentPage.BindingContext>
+        <local:NotesViewModel/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,Auto" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <ScrollView Grid.Row="0">
+                <Grid RowDefinitions="230,Auto,*">
+
+                    <!--Items In Header-->
+                    <Custom:CustomFrame CornerRadius="0,0,100,100" Grid.Row="0" BackgroundColor="#0d5d44">
+                        <Grid RowDefinitions="Auto" ColumnDefinitions="Auto,*">
+                            <Label Grid.Row="0" Grid.Column="0" Text="My Notes" FontSize="25" TextColor="White" Padding="10,25,0,0" FontAttributes="Bold"/>
+                            <Image Grid.Row="0" Grid.Column="1" Source="NoteImage"  HeightRequest="150" WidthRequest="150" HorizontalOptions="End"/>
+                        </Grid>
+                    </Custom:CustomFrame>
+
+                    <!--List Of Notes-->
+                    <FlexLayout Grid.Row="1" Direction="Row" Wrap="Wrap"  BindableLayout.ItemsSource="{Binding Notes}"  Margin="10,-90,10,0" JustifyContent="SpaceAround"  AlignItems="Center">
+                        <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <Frame BackgroundColor="White" HeightRequest="180" WidthRequest="120" CornerRadius="10" FlexLayout.Basis="45%" Margin="0,15,0,0">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" CommandParameter="{Binding Text}"/>
+                                    </Frame.GestureRecognizers>
+                                    <Grid RowDefinitions="Auto,Auto,*">
+                                        <Label Grid.Row="0" Text="{Binding Title}" HorizontalOptions="Start" FontAttributes="Bold" TextColor="#000000" FontSize="18"/>
+                                        <Label Grid.Row="0" HorizontalOptions="End" Text="" FontFamily="{StaticResource FontAwesomeSolid}"/>
+                                        <Label Grid.Row="1" Text="{Binding Text}"  TextColor="#000000" FontSize="15"/>
+                                        <Label Grid.Row="2" Text="{Binding Date}"  TextColor="#999999"  VerticalTextAlignment="End" FontSize="13"/>
+                                    </Grid>
+                                </Frame>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                    </FlexLayout>
+
+                </Grid>
+            </ScrollView>
+
+            <!--Tabbend Page Navigation-->
+            <Custom:CustomFrame Grid.Row="1" CornerRadius="20,20,0,0" BackgroundColor="White" HeightRequest="25">
+                <Grid RowDefinitions="*" ColumnDefinitions="*,*" Padding="10,0,0,0" HorizontalOptions="FillAndExpand">
+
+                    <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                        <Image  Source="setting" HeightRequest="30" WidthRequest="30"/>
+                        <Image  Source="Grupo_6" Margin="20,0,0,0" HeightRequest="35" WidthRequest="35"/>
+                    </StackLayout>
+
+                    <StackLayout Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                        <Image Source="Grupo_11" HeightRequest="30" WidthRequest="30" Margin="0,0,20,0" />
+                        <Image Source="Grupo_12" HeightRequest="30" WidthRequest="30"/>
+                    </StackLayout>
+                </Grid>
+            </Custom:CustomFrame>
+
+            <!--Center Button-->
+            <Frame Grid.Row="1"  BackgroundColor="#fa8704" CornerRadius="30" HeightRequest="20" WidthRequest="20"  HorizontalOptions="Center" VerticalOptions="Start" Margin="0,-15,0,10">
+                <Image   Source="plus_sign" VerticalOptions="Center" HorizontalOptions="Center"/>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
